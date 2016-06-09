@@ -5,6 +5,10 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const wiredep = require('wiredep').stream;
 
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
@@ -27,13 +31,16 @@ gulp.task('styles', () => {<% if (includeSass) { %>
 
 <% if (includeBabel) { -%>
 gulp.task('scripts', () => {
-  return gulp.src('app/scripts/**/*.js')
-    .pipe($.plumber())
-    .pipe($.sourcemaps.init())
-    .pipe($.babel())
-    .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('.tmp/scripts'))
-    .pipe(reload({stream: true}));
+  return browserify({ debug: true })
+    .transform(babelify)
+    .require('./app/scripts/main.js', { entry: true })
+    .bundle()
+    .on('error', function handleError(err) {
+      console.error(err.toString());
+      this.emit('end');
+    })
+    .pipe(source('main.js'))
+    .pipe(gulp.dest('.tmp/scripts'));
 });
 <% } -%>
 

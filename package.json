@@ -1,10 +1,10 @@
 {
-  "name": "generator-webapp",
+  "name": "generator-js-sandbox",
   "version": "2.1.0",
-  "description": "Scaffold out a front-end web app",
-  "license": "BSD-2-Clause",
-  "repository": "yeoman/generator-webapp",
-  "author": "The Yeoman Team",
+  "description": "A gulp.js generator for simple JS stuffs using browserSync, browserify, and babelify",
+  "license": "MIT",
+  "repository": "iamdevonbutler/generator-js-sandbox",
+  "author": "Jason Pescione <jpescione@gmail.com>",
   "main": "app/index.js",
   "engines": {
     "node": ">=4",
