@@ -40,7 +40,8 @@ gulp.task('scripts', () => {
       this.emit('end');
     })
     .pipe(source('main.js'))
-    .pipe(gulp.dest('.tmp/scripts'));
+    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe(reload({stream: true}));
 });
 <% } -%>
 
