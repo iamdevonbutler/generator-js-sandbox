@@ -1,6 +1,6 @@
 {
   "name": "generator-js-sandbox",
-  "version": "2.1.0",
+  "version": "0.1.0",
   "description": "A gulp.js generator for simple JS stuffs using browserSync, browserify, and babelify",
   "license": "MIT",
   "repository": "iamdevonbutler/generator-js-sandbox",
