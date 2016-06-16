@@ -199,10 +199,16 @@ gulp.task('wiredep', () => {<% if (includeSass) { %>
     .pipe(gulp.dest('app'));
 });
 
+gulp.task('deploy', ['build'], () => {
+  return gulp.src('dist')
+    .pipe($.subtree())
+    .pipe($.clean());
+});
+
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], () => {
-  gulp.start('build');
+  gulp.start('serve');
 });
